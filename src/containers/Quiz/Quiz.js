@@ -6,15 +6,17 @@ class Quiz extends React.Component {
     state={
         quize:[
           {
-              answers:[
-                  {text: 'Answer1'},
-                  {text: 'Answer2'},
-                  {text: 'Answer3'},
-                  {text: 'Answer4'},
-                  {text: 'Answer5'}
+              question:'Which way is anti-clockwise, left or right?',
+              rightAnswerId:2,
+              answers:[                  
+                  {text: 'To the Right', id:1},
+                  {text: 'To the Left', id:2}
               ]
           }  
         ]
+    };
+    onAnswerClickHandler=(answerId)=>{
+        console.log(answerId)
     }
     render(){
         return (
@@ -22,7 +24,9 @@ class Quiz extends React.Component {
                 <h2>Quiz</h2>
                 <div className={classes.QuizWrapper}>
                     <ActiveQuiz
-                    answers={this.state.quize[0].answers}/>
+                    onAnswerClick = {this.onAnswerClickHandler}
+                    answers={this.state.quize[0].answers}
+                    question={this.state.quize[0].question}/>
                 </div>
             </div>
 
