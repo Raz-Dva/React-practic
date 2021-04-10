@@ -26,3 +26,9 @@ code {
   padding: 5px 20px;
   max-width: 850px;
 }
+.error{
+  background-color: #FF7667 !important;
+}
+.success{
+  background-color: #83dd86 !important;
+}

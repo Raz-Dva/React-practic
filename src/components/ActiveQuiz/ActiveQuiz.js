@@ -7,15 +7,16 @@ const ActiveQuiz = (props) => {
         <div className={classes.ActiveQuiz}>
             <p className={classes.Question}>
                 <span className={classes.Font_bold}>
-                   {props.unswerNumber}) {props.question}
+                    {props.answerNumber}) {props.question}
                 </span>
-                <small className={classes.Badge}>{props.unswerNumber} from {props.quizeLength}</small>
+                <small className={classes.Badge}>{props.answerNumber} from {props.quizeLength}</small>
             </p>
             <AnswersList
-            unswerNumber={props.unswerNumber}
-            quizItem={props.quizItem}
-             answers={props.answers}
-             onAnswerClick={props.onAnswerClick}/>
+                answerNumber={props.answerNumber}
+                answers={props.answers}
+                onAnswerClick={props.onAnswerClick} 
+                freezenAnswer={props.freezenAnswer}
+               />
         </div>
     )
 

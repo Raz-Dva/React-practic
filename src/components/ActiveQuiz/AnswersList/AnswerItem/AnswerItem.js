@@ -2,11 +2,20 @@ import React from 'react';
 import classes from './AnswerItem.module.css'
 
 const AnswerItem = (props) => {
-    console.log(props.unswerNumber)
+    const classesArr = [classes.AnswerItem];
+  if(props.answer.choice){
+    classesArr.push(props.answer.choice)
+
+  }
     return (
         <li
-         className={classes.AnswerItem}
-         onClick={()=>props.onAnswerClick(props.answer.id, props.unswerNumber)}>
+            className={classesArr.join(' ')}
+            onClick={() => {
+                if(props.freezenAnswer){
+                    return  false
+                }
+                props.onAnswerClick(props.answer.id, props.answerNumber)
+            }}>
             {props.answer.text}
         </li>
     )

@@ -9,10 +9,12 @@ const AnswersList = (props) => {
                 props.answers.map((answer, index) => {
                    return(
                        <AnswerItem
-                       unswerNumber={props.unswerNumber}
                        key={index}
+                       answerNumber={props.answerNumber}
                        answer={answer}
-                       onAnswerClick={props.onAnswerClick}/>
+                       onAnswerClick={props.onAnswerClick}  
+                       freezenAnswer={props.freezenAnswer}                    
+                       />
                    )
                 })
             }
