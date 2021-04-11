@@ -1,11 +1,14 @@
 import React from 'react';
 import classes from './Quiz.module.css';
 import ActiveQuiz from '../../components/ActiveQuiz/ActiveQuiz'
+import FinishedQuiz from '../../components/FinishedQuiz/FinishedQuiz';
 
 class Quiz extends React.Component {
     state = {
+        countCorrectAnswers: 0,
+        finished: false,
+        showResultsQuiz: false,
         activeQuestion: 0,
-        answerState: null,
         freezenAnswer: false,
         quize: [
             {
@@ -42,14 +45,14 @@ class Quiz extends React.Component {
             quizArr = [...this.state.quize];
 
         const changeStateFunc = (timeOutFunc) => {
-            // console.log(typeof timeOutFunc);
             if (answerId === quizeState[answerNumber - 1].rightAnswerId) {
                 quizArr[answerNumber - 1].answers[answerId - 1].choice = 'success';
                 this.setState({
                     quize: quizArr,
-                    freezenAnswer: true
+                    freezenAnswer: true,
+                    countCorrectAnswers: this.state.countCorrectAnswers + 1
                 });
-                if(typeof timeOutFunc == 'function' ){timeOutFunc()}                         
+                if (typeof timeOutFunc == 'function') { timeOutFunc() }
 
             } else {
                 quizArr[answerNumber - 1].answers[answerId - 1].choice = 'error';
@@ -57,17 +60,18 @@ class Quiz extends React.Component {
                     quize: quizArr,
                     freezenAnswer: true
                 });
-                if(typeof timeOutFunc == 'function' ){timeOutFunc()}  
+                if (typeof timeOutFunc == 'function') { timeOutFunc() }
             };
         };
+
+
         if (this.state.activeQuestion + 1 === quizeState.length) {
-            changeStateFunc(null);            
+            changeStateFunc(this.finishedQuizFun);
             return false
         };
-
         changeStateFunc(this.timeOutChange)
 
-    };    
+    };
 
     timeOutChange = () => {
         const timeout = window.setTimeout(() => {
@@ -78,20 +82,62 @@ class Quiz extends React.Component {
             window.clearTimeout(timeout)
         }, 2000)
     };
+    finishedQuizFun = () => {
+        const timeout = window.setTimeout(() => {
+            this.setState({
+                finished: true
+            });
+            window.clearTimeout(timeout)
+        }, 2000)
+    };
+    retryHandler = () => {
+        const quizArr = [...this.state.quize];
+        quizArr.forEach((question) => {
+            question.answers.forEach((answer) => {
+                answer.choice = null
+            })
+        });
+
+        this.setState({
+            countCorrectAnswers: 0,
+            finished: null,
+            activeQuestion: 0,
+            freezenAnswer: false,
+            showResultsQuiz: false,
+            quize: quizArr
+        })
+    };
+    showResultsHandler=()=>{
+        this.setState({
+            showResultsQuiz:true
+        })
+    }
 
     render() {
         return (
             <div className={classes.Quiz}>
                 <h2>Quiz</h2>
                 <div className={classes.QuizWrapper}>
-                    <ActiveQuiz
-                        onAnswerClick={this.onAnswerClickHandler}
-                        answers={this.state.quize[this.state.activeQuestion].answers}
-                        question={this.state.quize[this.state.activeQuestion].question}
-                        quizeLength={this.state.quize.length}
-                        answerNumber={this.state.activeQuestion + 1}
-                        freezenAnswer={this.state.freezenAnswer}
-                    />
+
+                    {this.state.finished ?
+                        <FinishedQuiz
+                            countCorrectAnswers={this.state.countCorrectAnswers}
+                            quizeLength={this.state.quize.length}
+                            onRetry={this.retryHandler}
+                            showResultsHandler={this.showResultsHandler}
+                            showResultsQuiz = {this.state.showResultsQuiz}
+                            freezenAnswer={this.state.freezenAnswer}
+                            quiz= {this.state.quize}
+
+                        />
+                        : <ActiveQuiz
+                            onAnswerClick={this.onAnswerClickHandler}
+                            answers={this.state.quize[this.state.activeQuestion].answers}
+                            question={this.state.quize[this.state.activeQuestion].question}
+                            quizeLength={this.state.quize.length}
+                            answerNumber={this.state.activeQuestion + 1}
+                            freezenAnswer={this.state.freezenAnswer}
+                        />}
                 </div>
             </div>
 

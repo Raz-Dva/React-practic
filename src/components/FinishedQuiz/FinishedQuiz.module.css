@@ -1,0 +1,30 @@
+.Button {
+  cursor: pointer;
+  display: inline-block;
+  font-family: arial, sans-serif;
+  font-size: 14px;
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  font-family: system-ui;
+  user-select: none;
+  line-height: 2em;
+  padding: 1px 1.2em;
+  margin-right:15px;
+  outline: none;
+  border: 1px solid rgba(33, 43, 52, 1);
+  border-radius: 3px;
+  background: #00c16e;
+  box-shadow: inset 0 1px rgb(101 126 114), inset 0 0 1px rgb(140 170 150 / 80%),
+    0 -1px 1px rgb(63 66 65 / 50%);
+}
+.Button:active {
+  box-shadow: inset 1px 1px 4px rgb(0 10 20 / 85%);
+}
+.Button:focus:not(:active) {
+  border: 1px solid rgb(22, 32, 43);
+  border-bottom: 1px solid rgb(25, 34, 45);
+  background: #009655;
+  box-shadow: inset 0 1px 3px rgba(0, 10, 20, 0.5), 0 1px rgb(83, 94, 104),
+    0 0 1px rgb(86, 96, 106);
+  pointer-events: none;
+}
