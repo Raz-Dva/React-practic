@@ -9,13 +9,12 @@ body {
   min-height: 100%;
   height: 100%;
   margin: 0;
-  color:#fff;
+  color: #fff;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  list-style: none;
 }
 
 code {
@@ -28,9 +27,12 @@ code {
   padding: 5px 20px;
   max-width: 850px;
 }
-.error{
-  background-color: #FF7667 !important;
+.error {
+  background-color: #ff7667 !important;
 }
-.success{
+.success {
   background-color: #83dd86 !important;
+}
+li {
+  list-style: none;
 }

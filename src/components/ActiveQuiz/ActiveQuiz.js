@@ -14,12 +14,11 @@ const ActiveQuiz = (props) => {
             <AnswersList
                 answerNumber={props.answerNumber}
                 answers={props.answers}
-                onAnswerClick={props.onAnswerClick} 
+                onAnswerClick={props.onAnswerClick}
                 freezenAnswer={props.freezenAnswer}
-               />
+            />
         </div>
     )
-
 };
 export default ActiveQuiz;
 

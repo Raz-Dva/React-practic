@@ -38,8 +38,7 @@ const FinishedQuiz = (props) => {
                             </div>
                         )
                     })
-                    : null
-            }
+                    : null}
         </div>
     )
 }

@@ -1,21 +1,13 @@
 import React from 'react';
-
 import Layout from './hoc/Layout';
 import Quiz from './containers/Quiz/Quiz';
-
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-       
-      </header>
-    
         <Layout>
           <Quiz/>
         </Layout>
-      
-     
     </div>
   );
 }
