@@ -8,6 +8,7 @@ class Quiz extends React.Component {
         countCorrectAnswers: 0,
         finished: false,
         showResultsQuiz: false,
+        showAddQuestionForm:true,
         activeQuestion: 0,
         freezenAnswer: false,
         quize: [
@@ -112,6 +113,11 @@ class Quiz extends React.Component {
             showResultsQuiz:true
         })
     }
+    addQuestionHandler =()=>{
+        this.setState({
+            showAddQuestionForm:true
+        })
+    }
 
     render() {
         return (
@@ -125,6 +131,8 @@ class Quiz extends React.Component {
                             quizeLength={this.state.quize.length}
                             onRetry={this.retryHandler}
                             showResultsHandler={this.showResultsHandler}
+                            addQuestionFormHandler={this.addQuestionHandler}
+                            showAddQuestionForm= {this.state.showAddQuestionForm}
                             showResultsQuiz = {this.state.showResultsQuiz}
                             freezenAnswer={this.state.freezenAnswer}
                             quiz= {this.state.quize}

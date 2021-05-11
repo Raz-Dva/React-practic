@@ -1,9 +1,11 @@
 import React from 'react';
 import classes from './FinishedQuiz.module.css';
 import AnswerItem from '../ActiveQuiz/AnswersList/AnswerItem/AnswerItem'
+import AddQuestionForm from '../AddQuestionForm/AddQuestionForm'
 
 
 const FinishedQuiz = (props) => {
+    console.log(props.showAddQuestionForm)
     return (
         <div>
             <h2>End of the quiz</h2>
@@ -19,6 +21,13 @@ const FinishedQuiz = (props) => {
                 type="button"
                 className={classes.Button}
             >Show results</button>
+            <button
+                type="button"
+                className={classes.Button}
+                onClick={props.addQuestionFormHandler}>
+                Add Question</button>
+            <hr />
+            {props.showAddQuestionForm ? <AddQuestionForm /> : null}
             <hr />
             {
                 props.showResultsQuiz ?
