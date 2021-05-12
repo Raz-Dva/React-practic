@@ -1,59 +1,68 @@
 import React from 'react';
+import CreateFormControls from './CreateFormControls/CreateFormControls';
+import Input from './Input/Input';
+import TextArea from './TextArea/TextArea';
 
 class AddQuestionForm extends React.Component {
     state = {
-        inputControls: {
-           
-            textarea: {
-                value: '',
-                label: '',
-                errMessage: 'The field must not be empty',
-                valid: false,
-                touched: false,
-                validation: null,
-                validation: {
-                    required: true,
-                    maxlength: 70,
-                    minLength: 5
-
-                }
-            },
-            input: {
-                value: '',
-                label: '',
-                errMessage: 'The field must not be empty',
-                valid: false,
-                touched: false,
-                validation: null,
-                validation: {
-                    required: true,
-                    maxlength: 30
-
-                }
-            }
-        }
+        formControls: CreateFormControls()
+    }
+    validateControl=(value, validation)=>{
+        if(!validation)return true        
 
     }
-    createInputs = () => {
 
-        Object.keys({ ...this.state.field, ...this.state.textarea }).map((attr, index) => {
-            
+    changeInputHandler = (value, item) => {
+        const formControls = { ...this.state.formControls }
+        const control = { ...formControls[item] }
+        control.value = value
+        control.touched = true
+        control.valid=this.validateControl(control.value, control.validation)
+        formControls[item] = control
+        this.setState({
+            formControls
         })
-
+        // console.log(this.state.formControls[item].value)
     }
-    createTextarea = () => {
+    CreateFormItems = () => {
+        return Object.keys(this.state.formControls).map((item, index) => {
+            const control = this.state.formControls[item]
+            return (
+                <div key={index}>
+                    {item === 'textareaControl' ?
+                        <TextArea
+                            label={control.label}
+                            id={item + index}
+                            type={control.type}
+                            value={control.value}
+                            errMessage={control.errMessage}
+                            shouldValidate={!!control.validation}
+                            valid={control.valid}
+                            onChange={event => this.changeInputHandler(event.target.value, item)}
+                            result={this.state.formControls[item].value}
+                        />
+                        :
+                        <Input
+                            label={control.label}
+                            id={item + index}
+                            type={control.type}
+                            value={control.value}
+                            errMessage={control.errMessage}
+                            shouldValidate={!!control.validation}
+                            valid={control.valid}
+                            onChange={event => this.changeInputHandler(event.target.value, item)}
+                            result={this.state.formControls[item].value}
+                        />
+                    }</div>
+            )
 
+        })
     }
     render() {
         return (
             <form>
                 <h2>Add Question Form</h2>
-                <div className='classes.Form_group'>
-                    {this.createTextarea()}
-                </div>
-                <div className='classes.Form_group'>
-                    {this.createInputs()}
-                </div>
+                {this.CreateFormItems()}
             </form>
         )
     }

@@ -5,7 +5,6 @@ import AddQuestionForm from '../AddQuestionForm/AddQuestionForm'
 
 
 const FinishedQuiz = (props) => {
-    console.log(props.showAddQuestionForm)
     return (
         <div>
             <h2>End of the quiz</h2>
@@ -27,7 +26,11 @@ const FinishedQuiz = (props) => {
                 onClick={props.addQuestionFormHandler}>
                 Add Question</button>
             <hr />
-            {props.showAddQuestionForm ? <AddQuestionForm /> : null}
+            {props.showAddQuestionForm ? 
+            <AddQuestionForm
+            // showAddQuestionForm={props.showAddQuestionForm}
+             />
+             : null}
             <hr />
             {
                 props.showResultsQuiz ?

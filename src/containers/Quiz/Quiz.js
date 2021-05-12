@@ -6,7 +6,7 @@ import FinishedQuiz from '../../components/FinishedQuiz/FinishedQuiz';
 class Quiz extends React.Component {
     state = {
         countCorrectAnswers: 0,
-        finished: false,
+        finished: true,
         showResultsQuiz: false,
         showAddQuestionForm:true,
         activeQuestion: 0,
