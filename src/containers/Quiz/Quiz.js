@@ -118,13 +118,11 @@ class Quiz extends React.Component {
             showAddQuestionForm:true
         })
     }
-
     render() {
         return (
             <div className={classes.Quiz}>
                 <h2>Quiz</h2>
                 <div className={classes.QuizWrapper}>
-
                     {this.state.finished ?
                         <FinishedQuiz
                             countCorrectAnswers={this.state.countCorrectAnswers}

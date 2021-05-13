@@ -10,12 +10,13 @@ const createFormItems= {
         validation: {
             required: true,
             maxlength: 30
-        }
+        },
+        type:'text'
     },
     defaultControls: {
         value: '',
         errMessage: 'The field must not be empty',
-        valid: false,
+        valid: true,
         touched: false,
     }
 };
