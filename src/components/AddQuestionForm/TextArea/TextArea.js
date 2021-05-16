@@ -8,8 +8,8 @@ const TextArea = (props) => {
                 value={props.value}
                 onChange={props.onChange}
             />
-            {/* <p>Result: {props.result}</p> */}
-            <p style={{'color':'red'}}>{!props.valid ? (props.errMessage +' '+ props.value.length): null}</p>
+            <p>Number of characters: {props.value.length}</p>
+            <p style={{ 'color': 'red' }}>{!props.valid ? props.errMessage  : null}</p>
         </label>
     )
 }

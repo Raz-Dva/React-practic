@@ -3,7 +3,7 @@ const ButtonSend = (props) => {
         <div>
             <button
             onClick={props.handleSend}
-            disabled={!props.disabled}// false  заблок  true отблок 
+            disabled={!props.disabled}
             >Add Question</button>
         </div>
     )

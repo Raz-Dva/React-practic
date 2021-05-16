@@ -118,6 +118,18 @@ class Quiz extends React.Component {
             showAddQuestionForm:true
         })
     }
+    addNewQuestion=(question)=>{
+    const currentstate = {...this.state.quize}
+    // console.log(currentstate)
+
+    // execute the command setState
+    console.log(question)
+
+        // this.setState({
+
+        // })
+    };
+
     render() {
         return (
             <div className={classes.Quiz}>
@@ -126,15 +138,15 @@ class Quiz extends React.Component {
                     {this.state.finished ?
                         <FinishedQuiz
                             countCorrectAnswers={this.state.countCorrectAnswers}
-                            quizeLength={this.state.quize.length}
+                            quize={this.state.quize}
                             onRetry={this.retryHandler}
                             showResultsHandler={this.showResultsHandler}
                             addQuestionFormHandler={this.addQuestionHandler}
                             showAddQuestionForm= {this.state.showAddQuestionForm}
                             showResultsQuiz = {this.state.showResultsQuiz}
                             freezenAnswer={this.state.freezenAnswer}
-                            quiz= {this.state.quize}
-
+                            arrQuize= {this.state.quize}
+                            addNewQuestion={this.addNewQuestion}
                         />
                         : <ActiveQuiz
                             onAnswerClick={this.onAnswerClickHandler}

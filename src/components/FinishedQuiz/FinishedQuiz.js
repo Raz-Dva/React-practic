@@ -8,7 +8,7 @@ const FinishedQuiz = (props) => {
     return (
         <div>
             <h2>End of the quiz</h2>
-            <p>Correct answers <span>{props.countCorrectAnswers} of {props.quizeLength} </span></p>
+            <p>Correct answers <span>{props.countCorrectAnswers} of {props.quize.length} </span></p>
             <br />
             <button
                 onClick={props.onRetry}
@@ -28,29 +28,28 @@ const FinishedQuiz = (props) => {
             <hr />
             {props.showAddQuestionForm ? 
             <AddQuestionForm
-            // showAddQuestionForm={props.showAddQuestionForm}
-             />
-             : null}
+             arrQuize={props.arrQuize}
+             addNewQuestion={props.addNewQuestion}
+              /> : null}
             <hr />
-            {
-                props.showResultsQuiz ?
-                    props.quiz.map((quizElement, index) => {
-                        return (
-                            <div key={index}>
-                                <p>{quizElement.question}</p>
-                                {quizElement.answers.map((answer, index) => {
-                                    return (
-                                        < AnswerItem
-                                            key={index}
-                                            answer={answer}
-                                            freezenAnswer={props.freezenAnswer}
-                                        />
-                                    )
-                                })}
-                            </div>
-                        )
-                    })
-                    : null}
+            {props.showResultsQuiz ?
+                props.quiz.map((quizElement, index) => {
+                    return (
+                        <div key={index}>
+                            <p>{quizElement.question}</p>
+                            {quizElement.answers.map((answer, index) => {
+                                return (
+                                    < AnswerItem
+                                        key={index}
+                                        answer={answer}
+                                        freezenAnswer={props.freezenAnswer}
+                                    />
+                                )
+                            })}
+                        </div>
+                    )
+                })
+                : null}
         </div>
     )
 }

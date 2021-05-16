@@ -10,8 +10,6 @@ class AddQuestionForm extends React.Component {
         formControls: CreateFormControls()
     }
     createFormItems = () => {
-        // console.log(this.state.formControls)
-
         return Object.keys(this.state.formControls).map((item, index) => {
             const control = this.state.formControls[item]
             return (
@@ -20,7 +18,6 @@ class AddQuestionForm extends React.Component {
                         <TextArea
                             label={control.label}
                             id={item + index}
-                            // type={control.type}
                             value={control.value}
                             errMessage={control.errMessage}
                             shouldValidate={!!control.validation}
@@ -53,14 +50,12 @@ class AddQuestionForm extends React.Component {
         control.touched = true
         control.valid = this.validateControl(control.value, control.validation)
         formControls[item] = control
-
         let isFormValid = true;
         Object.keys(formControls).map((name, index) => {
-            console.log(`${name}
-
-valid-${formControls[name].valid}
-touched- ${formControls[name].touched} 
-isFormValid-${isFormValid}`)
+            //             console.log(`${name}
+            // valid-${formControls[name].valid}
+            // touched- ${formControls[name].touched} 
+            // isFormValid-${isFormValid}`)
 
             isFormValid = formControls[name].valid && isFormValid && formControls[name].touched
         })
@@ -73,39 +68,47 @@ isFormValid-${isFormValid}`)
         let isValid = true;
 
         if (validation.required) {
-            // console.log(value.trim())
-
             isValid = value.trim() !== '' && isValid
         }
         if (validation.maxlength) {
             isValid = value.length <= validation.maxlength && isValid
         }
         if (validation.minLength) {
-            // console.log(value.length)
             isValid = value.length >= validation.minLength && isValid
         }
         return isValid
     }
-    handleSend = () => {
+    handleSend = (e) => {
+        e.preventDefault()
+        // console.log(this.state.formControls)
+        // console.log(this.props.arrQuize)
+        this.props.addNewQuestion(
+            {
+                id: 4,
+                question: 'Who discovered Protons?',
+                rightAnswerId: 1,
+                answers: [
+                    { text: 'Rutherford', id: 1, choice: null },
+                    { text: 'Dutherford', id: 2, choice: null }
+                ]
+            }
+        )
+        // create and send new Question
 
+        // need callback
     }
     render() {
-        // console.log(this.state.isFormValid )
-
         return (
             <form>
                 <h2>Add Question Form</h2>
                 {this.createFormItems()}
                 <ButtonSend
-                    handleSend={this.handleSend}
+                    handleSend={(event) => { this.handleSend(event) }}
                     disabled={this.state.isFormValid}
                 />
-                <p>нарисовать схему валидации</p>
             </form>
         )
     }
 }
-
-
 
 export default AddQuestionForm
