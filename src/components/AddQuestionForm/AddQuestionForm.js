@@ -52,11 +52,6 @@ class AddQuestionForm extends React.Component {
         formControls[item] = control
         let isFormValid = true;
         Object.keys(formControls).map((name, index) => {
-            //             console.log(`${name}
-            // valid-${formControls[name].valid}
-            // touched- ${formControls[name].touched} 
-            // isFormValid-${isFormValid}`)
-
             isFormValid = formControls[name].valid && isFormValid && formControls[name].touched
         })
         this.setState({
@@ -80,27 +75,30 @@ class AddQuestionForm extends React.Component {
     }
     handleSend = (e) => {
         e.preventDefault()
+        const stateFormControl = this.state.formControls
         // console.log(this.state.formControls)
         // console.log(this.props.arrQuize)
         this.props.addNewQuestion(
             {
-                id: 4,
-                question: 'Who discovered Protons?',
+                id: this.props.arrQuize.length +1,
+                question: stateFormControl.textareaControl.value,
                 rightAnswerId: 1,
                 answers: [
-                    { text: 'Rutherford', id: 1, choice: null },
-                    { text: 'Dutherford', id: 2, choice: null }
+                    { text: stateFormControl.inputControl1.value, id: 1, choice: null },
+                    { text: stateFormControl.inputControl2.value, id: 2, choice: null }
                 ]
             }
         )
         // create and send new Question
 
         // need callback
+        // add right answer
     }
     render() {
         return (
             <form>
                 <h2>Add Question Form</h2>
+                <p> How many consonants are there in the English alphabet?</p>
                 {this.createFormItems()}
                 <ButtonSend
                     handleSend={(event) => { this.handleSend(event) }}

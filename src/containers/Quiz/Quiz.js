@@ -6,7 +6,7 @@ import FinishedQuiz from '../../components/FinishedQuiz/FinishedQuiz';
 class Quiz extends React.Component {
     state = {
         countCorrectAnswers: 0,
-        finished: true,
+        finished: false,
         showResultsQuiz: false,
         showAddQuestionForm:true,
         activeQuestion: 0,
@@ -119,15 +119,19 @@ class Quiz extends React.Component {
         })
     }
     addNewQuestion=(question)=>{
-    const currentstate = {...this.state.quize}
+    const quize = {...this.state.quize}
+    // const currentstateAnsw = { ...currentstate.answers}
     // console.log(currentstate)
 
     // execute the command setState
-    console.log(question)
+    // console.log(this.state.quize)
+    // console.log(question)
+    
 
         // this.setState({
-
+        //     ...quize, question
         // })
+        // ??????????????
     };
 
     render() {

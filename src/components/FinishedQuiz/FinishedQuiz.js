@@ -5,6 +5,7 @@ import AddQuestionForm from '../AddQuestionForm/AddQuestionForm'
 
 
 const FinishedQuiz = (props) => {
+    console.log(props.arrQuize)
     return (
         <div>
             <h2>End of the quiz</h2>
@@ -33,7 +34,7 @@ const FinishedQuiz = (props) => {
               /> : null}
             <hr />
             {props.showResultsQuiz ?
-                props.quiz.map((quizElement, index) => {
+                props.arrQuize.map((quizElement, index) => {
                     return (
                         <div key={index}>
                             <p>{quizElement.question}</p>
