@@ -1,14 +1,17 @@
+import classes from '../Input.module.css';
+
 const TextArea = (props) => {
     return (
         <label>
             {props.label}
             <textarea
+            className={classes.TextArea}
                 type={props.type}
                 id={props.id}
                 value={props.value}
                 onChange={props.onChange}
             />
-            <p>Number of characters: {props.value.length}</p>
+            <p className={classes.TextCharacters}>Number of characters: {props.value.length}</p>
             <p style={{ 'color': 'red' }}>{!props.valid ? props.errMessage  : null}</p>
         </label>
     )

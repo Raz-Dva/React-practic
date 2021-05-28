@@ -21,24 +21,24 @@ class Quiz extends React.Component {
                     { text: 'To the Left', id: 2, choice: null }
                 ]
             },
-            {
-                id: 2,
-                question: 'What color symbolizes peace?',
-                rightAnswerId: 2,
-                answers: [
-                    { text: 'Red', id: 1, choice: null },
-                    { text: 'White', id: 2, choice: null }
-                ]
-            },
-            {
-                id: 3,
-                question: 'How many cards are there in a complete pack of cards?',
-                rightAnswerId: 1,
-                answers: [
-                    { text: 52, id: 1, choice: null },
-                    { text: 58, id: 2, choice: null }
-                ]
-            }
+            // {
+            //     id: 2,
+            //     question: 'What color symbolizes peace?',
+            //     rightAnswerId: 2,
+            //     answers: [
+            //         { text: 'Red', id: 1, choice: null },
+            //         { text: 'White', id: 2, choice: null }
+            //     ]
+            // },
+            // {
+            //     id: 3,
+            //     question: 'How many cards are there in a complete pack of cards?',
+            //     rightAnswerId: 1,
+            //     answers: [
+            //         { text: 52, id: 1, choice: null },
+            //         { text: 58, id: 2, choice: null }
+            //     ]
+            // }
         ]
     };
     onAnswerClickHandler = (answerId, answerNumber) => {
@@ -119,7 +119,8 @@ class Quiz extends React.Component {
         })
     }
     addNewQuestion=(question)=>{
-    const quize = {...this.state.quize}
+    const quize = [...this.state.quize];
+    quize.push(question)
     // const currentstateAnsw = { ...currentstate.answers}
     // console.log(currentstate)
 
@@ -128,9 +129,9 @@ class Quiz extends React.Component {
     // console.log(question)
     
 
-        // this.setState({
-        //     ...quize, question
-        // })
+        this.setState({
+            quize
+        })
         // ??????????????
     };
 
