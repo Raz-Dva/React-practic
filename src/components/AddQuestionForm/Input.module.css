@@ -1,23 +1,39 @@
-.Input, .TextArea{
+.Input, .TextArea {
     border: none;
     background: hsl(0, 0%, 93%);
-    border-radius: .25rem;
-    padding: .4rem 1rem;
+    border-radius: .15rem;
+    padding: .4rem;
     margin: 0 10px;
-    vertical-align: top;
 }
-.TextArea{
+
+.TextArea {
     width: 60%;
     min-height: 80px;
-    padding: .2rem 1rem;
     vertical-align: top;
 }
-label{
-    vertical-align: top;
-}
-.TextCharacters{
+
+.TextCharacters {
     color: #949494;
     padding-left: 9%;
     margin-top: 2px;
+    margin-bottom: 2px;
     font-size: 12px;
+}
+
+.TextError {
+    color: #FF5B57;
+    margin-top: -5px;
+}
+
+label {
+    display: inline-block;
+}
+
+/* [type="radio"] {
+    vertical-align: top;
+} */
+
+.RightAnsw{
+    vertical-align: top;
+    cursor: pointer;
 }

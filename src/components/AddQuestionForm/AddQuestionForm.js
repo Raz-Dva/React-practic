@@ -3,21 +3,25 @@ import CreateFormControls from './CreateFormControls/CreateFormControls';
 import Input from './Input/Input';
 import TextArea from './TextArea/TextArea';
 import ButtonSend from './Button/Button'
+import RadioBtn from './RadioBtn/RadioBtn.js'
+
 
 class AddQuestionForm extends React.Component {
     state = {
         isFormValid: false,
+        rightAnswerId: 1,
         formControls: CreateFormControls()
     }
     createFormItems = () => {
         return Object.keys(this.state.formControls).map((item, index) => {
             const control = this.state.formControls[item]
             return (
-                <div key={index}>
+                <div key={index} className="wrap_input">
                     {item === 'textareaControl' ?
                         <TextArea
                             label={control.label}
-                            id={item + index}
+                            id={`${item} + ${index}`}
+
                             value={control.value}
                             errMessage={control.errMessage}
                             shouldValidate={!!control.validation}
@@ -27,17 +31,23 @@ class AddQuestionForm extends React.Component {
                         />
                         : null}
                     {control.type === 'text' ?
-                        <Input
-                            label={control.label}
-                            id={item + index}
-                            type={control.type}
-                            value={control.value}
-                            errMessage={control.errMessage}
-                            shouldValidate={!!control.validation}
-                            valid={control.valid}
-                            onChange={event => this.changeInputHandler(event.target.value, item)}
-                            result={this.state.formControls[item].value}
-                        /> : null
+                        <>
+                            <Input
+                                label={control.label}
+                                id={`${item} + ${index}`}
+                                type={control.type}
+                                value={control.value}
+                                errMessage={control.errMessage}
+                                shouldValidate={!!control.validation}
+                                valid={control.valid}
+                                onChange={event => this.changeInputHandler(event.target.value, item)}
+                                result={this.state.formControls[item].value}
+                            />
+                            <RadioBtn
+                                index={index}
+                                rightAnswId={this.state.rightAnswerId}
+                                onChangeRadioBtn={event => this.changeRadioBtnHandler(event.target.value)} />
+                        </> : null
                     }</div>
             )
 
@@ -76,13 +86,13 @@ class AddQuestionForm extends React.Component {
     handleSend = (e) => {
         e.preventDefault()
         const stateFormControl = this.state.formControls
-        // console.log(this.state.formControls)
+        console.log(this.state.formControls)
         // console.log(this.props.arrQuize)
         this.props.addNewQuestion(
             {
-                id: this.props.arrQuize.length +1,
+                id: this.props.arrQuize.length + 1,
                 question: stateFormControl.textareaControl.value,
-                rightAnswerId: 1,
+                rightAnswerId: this.state.rightAnswerId,
                 answers: [
                     { text: stateFormControl.inputControl1.value, id: 1, choice: null },
                     { text: stateFormControl.inputControl2.value, id: 2, choice: null }
@@ -93,11 +103,15 @@ class AddQuestionForm extends React.Component {
         // need callback
         // add right answer
     }
+    changeRadioBtnHandler = (e) => {
+        this.setState({
+            rightAnswerId: +e
+        })
+    }
     render() {
         return (
             <form>
-                <h2>Add Question Form</h2>
-                <p> How many consonants are there in the English alphabet?</p>
+                <h2>Question Form</h2>
                 {this.createFormItems()}
                 <ButtonSend
                     handleSend={(event) => { this.handleSend(event) }}

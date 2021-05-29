@@ -8,7 +8,7 @@ class Quiz extends React.Component {
         countCorrectAnswers: 0,
         finished: false,
         showResultsQuiz: false,
-        showAddQuestionForm:true,
+        showAddQuestionForm:false,
         activeQuestion: 0,
         freezenAnswer: false,
         quize: [

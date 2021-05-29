@@ -1,3 +1,6 @@
+/* p{
+  caret-color: transparent;
+} */
 html {
   display: flex;
   flex-direction: column;

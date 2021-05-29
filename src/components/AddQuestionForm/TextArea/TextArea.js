@@ -12,7 +12,7 @@ const TextArea = (props) => {
                 onChange={props.onChange}
             />
             <p className={classes.TextCharacters}>Number of characters: {props.value.length}</p>
-            <p style={{ 'color': 'red' }}>{!props.valid ? props.errMessage  : null}</p>
+            <p className={classes.TextError} >{!props.valid ? props.errMessage  : null}</p>
         </label>
     )
 }
