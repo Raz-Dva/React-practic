@@ -81,7 +81,7 @@ class Quiz extends React.Component {
                 freezenAnswer: false
             });
             window.clearTimeout(timeout)
-        }, 2000)
+        }, 1000)
     };
     finishedQuizFun = () => {
         const timeout = window.setTimeout(() => {
@@ -89,7 +89,7 @@ class Quiz extends React.Component {
                 finished: true
             });
             window.clearTimeout(timeout)
-        }, 2000)
+        }, 1000)
     };
     retryHandler = () => {
         const quizArr = [...this.state.quize];
@@ -120,19 +120,11 @@ class Quiz extends React.Component {
     }
     addNewQuestion=(question)=>{
     const quize = [...this.state.quize];
-    quize.push(question)
-    // const currentstateAnsw = { ...currentstate.answers}
-    // console.log(currentstate)
-
-    // execute the command setState
-    // console.log(this.state.quize)
-    // console.log(question)
-    
+    quize.push(question)   
 
         this.setState({
             quize
         })
-        // ??????????????
     };
 
     render() {

@@ -2,7 +2,7 @@ import classes from '../Input.module.css';
 
 const TextArea = (props) => {
     return (
-        <label>
+        <label className={classes.LabelTextArea}>
             {props.label}
             <textarea
             className={classes.TextArea}

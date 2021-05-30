@@ -21,7 +21,6 @@ class AddQuestionForm extends React.Component {
                         <TextArea
                             label={control.label}
                             id={`${item} + ${index}`}
-
                             value={control.value}
                             errMessage={control.errMessage}
                             shouldValidate={!!control.validation}
@@ -86,8 +85,6 @@ class AddQuestionForm extends React.Component {
     handleSend = (e) => {
         e.preventDefault()
         const stateFormControl = this.state.formControls
-        console.log(this.state.formControls)
-        // console.log(this.props.arrQuize)
         this.props.addNewQuestion(
             {
                 id: this.props.arrQuize.length + 1,
@@ -99,9 +96,21 @@ class AddQuestionForm extends React.Component {
                 ]
             }
         )
+        this.resetFormHandler()
         // create and send new Question
         // need callback
         // add right answer
+    }
+    resetFormHandler = () => {
+        console.log(this.state.formControls )
+        const stateFormControl ={ ...this.state.formControls }
+        
+        stateFormControl.inputControl1.value = '';
+        stateFormControl.inputControl2.value = '';
+        stateFormControl.textareaControl.value = '';
+        this.setState({
+            formControls:stateFormControl
+        })
     }
     changeRadioBtnHandler = (e) => {
         this.setState({

@@ -27,13 +27,15 @@
 
 label {
     display: inline-block;
+    vertical-align: top;
 }
 
-/* [type="radio"] {
-    vertical-align: top;
-} */
+.LabelTextArea {
+    width: 100%;
+}
 
-.RightAnsw{
+.RightAnsw {
     vertical-align: top;
     cursor: pointer;
+    margin-top: 6px;
 }
